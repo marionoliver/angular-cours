@@ -1,5 +1,13 @@
-<h2>Races</h2>
+
 <button (click)="refreshRaces()">Click me !</button>
-<p>
-  {{ races.length }}
-</p>
+<div *ngIf="races.length > 0; else empty" >
+  <h2>Races</h2>
+  <ul>
+    <li *ngFor="let race of races; index as i">
+      {{ i }} - {{ race.name }}
+    </li>
+  </ul>
+</div>
+<ng-template #empty>
+  <h2>No races</h2>
+</ng-template>
