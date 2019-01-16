@@ -1,4 +1,12 @@
 export class Eleve {
+  private _id: number;
+  public get id(): number {
+    return this._id;
+  }
+  public set id(value: number) {
+    this._id = value;
+  }
+
   private _nomDeClasse: string;
   public get nomDeClasse(): string {
     return this._nomDeClasse;
