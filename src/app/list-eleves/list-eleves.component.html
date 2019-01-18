@@ -19,15 +19,14 @@
 <div class="card-columns">
   <div
     class="card text-center"
-    *ngFor="let eleve of (eleves | keyvalue)"
-    (click)="eleveToDisplay = eleve.value"
+    *ngFor="let eleve of eleves"
     style="cursor: pointer"
   >
-    <a [routerLink]="['/eleve', eleve.key]">
-      <div class="card-header">Elève {{ eleve.key }}</div>
+    <a [routerLink]="['/eleve', eleve.id]">
+      <div class="card-header">Elève {{ eleve.id }}</div>
       <div class="card-body">
         <h5 class="card-title">
-          {{ eleve.value.nom | uppercase }} {{ eleve.value.prenom | lowercase }}
+          {{ eleve.nom | uppercase }} {{ eleve.prenom | lowercase }}
         </h5>
       </div>
     </a>

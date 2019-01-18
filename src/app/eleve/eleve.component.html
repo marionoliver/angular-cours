@@ -4,15 +4,23 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">
-      {{ eleveToDisplay.nom }} {{ eleveToDisplay.prenom }}
+      {{ eleveToDisplay?.nom }} {{ eleveToDisplay?.prenom }}
     </h5>
     <p class="card-text">
-      Mineur : {{ mineur(eleveToDisplay.age) }} <br />
-      Email : {{ eleveToDisplay.email }} <br />
-      Nom de classe : {{ eleveToDisplay.nomDeClasse }} <br />
-      Filière : {{ eleveToDisplay.filiere }} <br />
-      Age : {{ eleveToDisplay.age | number: ".2" }} <br />
-      Description : {{ eleveToDisplay.description }}
+      Mineur : {{ mineur(eleveToDisplay?.age) }} <br />
+      Email : {{ eleveToDisplay?.email }} <br />
+      Nom de classe : {{ eleveToDisplay?.nomDeClasse }} <br />
+      Filière : {{ eleveToDisplay?.filiere }} <br />
+      Age : {{ eleveToDisplay?.age | number: ".2" }} <br />
+      Description : {{ eleveToDisplay?.description }}
     </p>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary" [routerLink]="['/eleve/edit', eleveToDisplay?.id]">
+      Modifier
+    </button>
+    <button class="btn btn-danger" (click)="delete(eleveToDisplay)" >
+        Supprimer
+      </button>
   </div>
 </div>

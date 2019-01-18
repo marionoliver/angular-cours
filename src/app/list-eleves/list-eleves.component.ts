@@ -10,28 +10,29 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./list-eleves.component.css']
 })
 export class ListElevesComponent implements OnInit {
-  eleves: Array<Eleve> = null;
+  eleves: any = null;
 
   constructor(private elevesService: ElevesService) { }
 
   ngOnInit() {
-    const newEleves = new Array();
     this.elevesService.list().subscribe(
-      eleve => newEleves.push(eleve)
+      eleves => {
+        this.eleves = eleves;
+        this.elevesService.eleves.next(this.eleves);
+      }
     );
-    this.eleves = newEleves;
   }
 
   filterMoreThanThirty() {
-    const newEleves = new Array();
-    this.elevesService.list().pipe(filter(eleve => eleve.age > 30)).subscribe(eleves => newEleves.push(eleves));
-    this.eleves = newEleves;
+    // const newEleves = new Array();
+    // this.elevesService.list().pipe(filter(eleve => eleve.age > 30)).subscribe(eleves => newEleves.push(eleves));
+    // this.eleves = newEleves;
   }
 
   justInititales() {
-    const newEleves = new Array();
-    this.elevesService.list().pipe(map(eleve => eleve.getInitiale())).subscribe(eleves => newEleves.push(eleves));
-    this.eleves = newEleves;
+    // const newEleves = new Array();
+    // this.elevesService.list().pipe(map(eleve => eleve.getInitiale())).subscribe(eleves => newEleves.push(eleves));
+    // this.eleves = newEleves;
   }
 
   resetFilter() {

@@ -12,6 +12,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { EleveComponent } from './eleve/eleve.component';
 import { EleveNewComponent } from './eleve-new/eleve-new.component';
 import { NotificationComponent } from './notification/notification.component';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { EditEleveComponent } from './edit-eleve/edit-eleve.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +27,18 @@ import { NotificationComponent } from './notification/notification.component';
     NavbarComponent,
     EleveComponent,
     EleveNewComponent,
-    NotificationComponent
+    NotificationComponent,
+    EditEleveComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false}
+    )
   ],
   providers: [MineurPipe],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { InMemoryDataService } from './../in-memory-data.service';
 import { NotificationService } from './../notification.service';
 import { Eleve } from './../store';
 import { ElevesService } from './../eleves.service';
@@ -28,6 +29,7 @@ export class EleveNewComponent implements OnInit {
   constructor(
     private elevesService: ElevesService,
     private notificationService: NotificationService,
+    private memoryService: InMemoryDataService,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -62,26 +64,28 @@ export class EleveNewComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   addEleve() {
     // tslint:disable-next-line:max-line-length
-    const eleve = new Eleve(
-      this.eleveForm.value.nomDeClasse,
-      this.eleveForm.value.nom,
-      this.eleveForm.value.prenom,
-      this.eleveForm.value.age,
-      this.eleveForm.value.filiere,
-      this.eleveForm.value.description,
-      this.eleveForm.value.email
-    );
-    this.elevesService.add(eleve);
-    this.notificationService.add('L\'élève ' +
-        eleve.nom +
-        ' ' +
-        eleve.prenom +
-        ' a été ajouté à la liste des élèves.'
-    );
+
+    this.elevesService.eleves.subscribe(eleves => {
+      const eleve = new Eleve(
+        this.memoryService.genId(eleves),
+        this.eleveForm.value.nomDeClasse,
+        this.eleveForm.value.nom,
+        this.eleveForm.value.prenom,
+        this.eleveForm.value.age,
+        this.eleveForm.value.filiere,
+        this.eleveForm.value.description,
+        this.eleveForm.value.email
+      );
+      this.elevesService.add(eleve)
+        .subscribe(eleve => {
+          console.log(eleve);
+      });
+    });
     this.router.navigate(['/eleves']);
   }
 }
