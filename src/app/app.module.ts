@@ -23,7 +23,7 @@ import { NotificationComponent } from './notification/notification.component';
     NavbarComponent,
     EleveComponent,
     EleveNewComponent,
-    NotificationComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

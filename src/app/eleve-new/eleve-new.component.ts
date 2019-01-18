@@ -1,6 +1,12 @@
+import { NotificationService } from './../notification.service';
 import { Eleve } from './../store';
 import { ElevesService } from './../eleves.service';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -19,7 +25,12 @@ export class EleveNewComponent implements OnInit {
   emailCtl: FormControl;
   eleveForm: FormGroup;
 
-  constructor(private elevesService: ElevesService, private fb: FormBuilder, private router: Router) {
+  constructor(
+    private elevesService: ElevesService,
+    private notificationService: NotificationService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.nomCtl = this.fb.control('', [
       Validators.required,
       Validators.maxLength(25)
@@ -55,8 +66,22 @@ export class EleveNewComponent implements OnInit {
 
   addEleve() {
     // tslint:disable-next-line:max-line-length
-    const eleve = new Eleve(this.eleveForm.value.nomDeClasse, this.eleveForm.value.nom, this.eleveForm.value.prenom, this.eleveForm.value.age, this.eleveForm.value.filiere, this.eleveForm.value.description, this.eleveForm.value.email);
+    const eleve = new Eleve(
+      this.eleveForm.value.nomDeClasse,
+      this.eleveForm.value.nom,
+      this.eleveForm.value.prenom,
+      this.eleveForm.value.age,
+      this.eleveForm.value.filiere,
+      this.eleveForm.value.description,
+      this.eleveForm.value.email
+    );
     this.elevesService.add(eleve);
+    this.notificationService.add('L\'élève ' +
+        eleve.nom +
+        ' ' +
+        eleve.prenom +
+        ' a été ajouté à la liste des élèves.'
+    );
     this.router.navigate(['/eleves']);
   }
 }

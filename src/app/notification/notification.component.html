@@ -1,3 +1,17 @@
-<p>
-  notification works!
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Notifications</th>
+      <th class="text-right">
+        <button class="btn btn-primary" (click)="notificationService.clear()" [disabled]="notificationService.list().length === 0">
+          Clear notifications
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let notification of notificationService.list()">
+      <td scope="row">{{ notification }}</td>
+    </tr>
+  </tbody>
+</table>

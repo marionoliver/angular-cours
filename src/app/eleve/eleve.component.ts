@@ -10,17 +10,20 @@ import { MineurPipe } from '../mineur.pipe';
   styleUrls: ['./eleve.component.css']
 })
 export class EleveComponent implements OnInit {
-
   eleveToDisplay: Eleve;
 
-  constructor(private eleveService: ElevesService, private route: ActivatedRoute, private mineurPipe: MineurPipe) { }
+  constructor(
+    private eleveService: ElevesService,
+    private route: ActivatedRoute,
+    private mineurPipe: MineurPipe
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('eleveId');
-      this.eleveService.get(parseInt(id, 10)).subscribe(
-        eleve => this.eleveToDisplay = eleve
-      );
+      this.eleveService
+        .get(parseInt(id, 10))
+        .subscribe(eleve => (this.eleveToDisplay = eleve));
     });
   }
 
@@ -28,5 +31,4 @@ export class EleveComponent implements OnInit {
     console.log(this.mineurPipe.transform(age));
     return this.mineurPipe.transform(age);
   }
-
 }

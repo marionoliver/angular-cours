@@ -12,8 +12,7 @@ import { filter, map } from 'rxjs/operators';
 export class ListElevesComponent implements OnInit {
   eleves: Array<Eleve> = null;
 
-  constructor(private elevesService: ElevesService) {
-  }
+  constructor(private elevesService: ElevesService) { }
 
   ngOnInit() {
     const newEleves = new Array();

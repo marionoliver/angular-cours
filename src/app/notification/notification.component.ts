@@ -1,3 +1,4 @@
+import { NotificationService } from './../notification.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
 
-  constructor() { }
+  notifications: Array<string>;
+
+  constructor(private notificationService: NotificationService) {
+  }
 
   ngOnInit() {
   }
