@@ -1,0 +1,12 @@
+input.ng-invalid {
+  border: 3px blue solid;
+}
+
+input.ng-invalid.ng-dirty {
+  border: 3px blue solid;
+}
+
+.text-error{
+  color: red;
+  font-weight: bold;
+}

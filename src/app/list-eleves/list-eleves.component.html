@@ -1,11 +1,21 @@
-<div class="row">
+<div class="row header">
   <div class="col-6 text-left"><h2>Mes élèves</h2></div>
-  <div class="col-6 text-right"><a class="btn btn-success" routerLink="/eleve/new">Ajouter un élève</a></div>
+  <div class="col-6 text-right"><a class="btn btn-success btn-lg" routerLink="/eleve/new">Ajouter un élève</a></div>
 </div>
-<div>
-  <button class="btn btn-primary" (click)="filterMoreThanThirty()" >Afficher les élèves de plus de 30 ans</button>
-  <button class="btn btn-primary" (click)="justInititales()" >Afficher les initiales de noms</button>
+<div class="justify-content-end">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active" (click)="resetFilter()">
+        <input type="radio" name="options" id="option3" autocomplete="off">Tous les élèves
+      </label>
+      <label class="btn btn-secondary" (click)="filterMoreThanThirty()">
+        <input type="radio" name="options" id="option2" autocomplete="off">Plus de 30 ans
+      </label>
+      <label class="btn btn-secondary" data-toggle="modal" data-target="#tronquerModal">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> Tronquer les noms
+      </label>
+  </div>
 </div>
+
 <div class="card-columns">
   <div
     class="card text-center"
@@ -23,3 +33,25 @@
     </a>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="tronquerModal" tabindex="-1" role="dialog" aria-labelledby="tronquerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tronquerModalLabel">Opération sensible</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Vous souhaitez n'afficher que les initiales des noms de familles des élèves. Cette opération est <strong>définitive</strong>.
+          <br />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" (click)="justInititales()" data-dismiss="modal">Continuer</button>
+        </div>
+      </div>
+    </div>
+  </div>

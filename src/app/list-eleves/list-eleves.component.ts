@@ -35,5 +35,12 @@ export class ListElevesComponent implements OnInit {
     this.eleves = newEleves;
   }
 
+  resetFilter() {
+    const newEleves = new Array();
+    this.elevesService.list().subscribe(
+      eleve => newEleves.push(eleve)
+    );
+    this.eleves = newEleves;
+  }
 
 }
