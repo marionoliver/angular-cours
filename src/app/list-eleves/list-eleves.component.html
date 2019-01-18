@@ -2,7 +2,10 @@
   <div class="col-6 text-left"><h2>Mes élèves</h2></div>
   <div class="col-6 text-right"><a class="btn btn-success" routerLink="/eleve/new">Ajouter un élève</a></div>
 </div>
-
+<div>
+  <button class="btn btn-primary" (click)="filterMoreThanThirty()" >Afficher les élèves de plus de 30 ans</button>
+  <button class="btn btn-primary" (click)="justInititales()" >Afficher les initiales de noms</button>
+</div>
 <div class="card-columns">
   <div
     class="card text-center"

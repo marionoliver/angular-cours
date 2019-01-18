@@ -78,7 +78,14 @@ export class Eleve {
     this.description = description;
     this.email = email;
   }
+
+  public getInitiale(): Eleve {
+    this.nom = this.nom.substr(0, 1);
+    return this;
+  }
 }
+
+
 
 const eleve1: Eleve = new Eleve('MBA1 Expert Web et Digital', 'Stéphant', 'Thomas', 21, 'filiere1', 'description1', 'pouet@pouet.fr');
 const eleve2: Eleve = new Eleve('MBA1 Expert Web et Digital', 'Deport', 'Antoine', 21, 'filiere2', 'description2', 'pouet@pouet.fr');

@@ -9,8 +9,8 @@ export class ElevesService {
 
   constructor() { }
 
-  list(): Observable<Eleve[]> {
-    return of(eleves);
+  list(): Observable<Eleve> {
+    return from(eleves);
   }
 
   add(eleve: Eleve) {

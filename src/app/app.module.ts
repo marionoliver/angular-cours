@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EleveComponent } from './eleve/eleve.component';
 import { EleveNewComponent } from './eleve-new/eleve-new.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EleveNewComponent } from './eleve-new/eleve-new.component';
     NavbarComponent,
     EleveComponent,
     EleveNewComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,

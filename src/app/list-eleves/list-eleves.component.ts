@@ -1,9 +1,8 @@
 
 import { ElevesService } from './../eleves.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Eleve } from '../store';
-
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-eleves',
@@ -17,8 +16,24 @@ export class ListElevesComponent implements OnInit {
   }
 
   ngOnInit() {
+    const newEleves = new Array();
     this.elevesService.list().subscribe(
-      eleves => this.eleves = eleves
+      eleve => newEleves.push(eleve)
     );
+    this.eleves = newEleves;
   }
+
+  filterMoreThanThirty() {
+    const newEleves = new Array();
+    this.elevesService.list().pipe(filter(eleve => eleve.age > 30)).subscribe(eleves => newEleves.push(eleves));
+    this.eleves = newEleves;
+  }
+
+  justInititales() {
+    const newEleves = new Array();
+    this.elevesService.list().pipe(map(eleve => eleve.getInitiale())).subscribe(eleves => newEleves.push(eleves));
+    this.eleves = newEleves;
+  }
+
+
 }
