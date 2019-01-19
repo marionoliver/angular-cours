@@ -25,6 +25,7 @@ export class EleveNewComponent implements OnInit {
   descriptionCtl: FormControl;
   emailCtl: FormControl;
   eleveForm: FormGroup;
+  eleveId: number = null;
 
   constructor(
     private elevesService: ElevesService,
@@ -65,27 +66,24 @@ export class EleveNewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.elevesService.eleves.subscribe(eleves => this.eleveId = this.memoryService.genId(eleves));
   }
 
   addEleve() {
-    // tslint:disable-next-line:max-line-length
-
-    this.elevesService.eleves.subscribe(eleves => {
-      const eleve = new Eleve(
-        this.memoryService.genId(eleves),
-        this.eleveForm.value.nomDeClasse,
-        this.eleveForm.value.nom,
-        this.eleveForm.value.prenom,
-        this.eleveForm.value.age,
-        this.eleveForm.value.filiere,
-        this.eleveForm.value.description,
-        this.eleveForm.value.email
-      );
-      this.elevesService.add(eleve)
+    const eleve = new Eleve(
+      this.eleveId,
+      this.eleveForm.value.nomDeClasse,
+      this.eleveForm.value.nom,
+      this.eleveForm.value.prenom,
+      this.eleveForm.value.age,
+      this.eleveForm.value.filiere,
+      this.eleveForm.value.description,
+      this.eleveForm.value.email
+    );
+    this.elevesService.add(eleve)
         .subscribe(eleve => {
           console.log(eleve);
       });
-    });
     this.router.navigate(['/eleves']);
   }
 }
