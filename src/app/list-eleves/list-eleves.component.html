@@ -10,7 +10,7 @@
       <label class="btn btn-secondary" (click)="filterMoreThanThirty()">
         <input type="radio" name="options" id="option2" autocomplete="off">Plus de 30 ans
       </label>
-      <label class="btn btn-secondary" data-toggle="modal" data-target="#tronquerModal">
+      <label class="btn btn-secondary" (click)="filterJustInitiales()">
         <input type="radio" name="options" id="option1" autocomplete="off" checked> Tronquer les noms
       </label>
   </div>
@@ -25,16 +25,20 @@
     <a [routerLink]="['/eleve', eleve.id]">
       <div class="card-header">Elève {{ eleve.id }}</div>
       <div class="card-body">
-        <h5 class="card-title">
-          {{ eleve.nom | uppercase }} {{ eleve.prenom | lowercase }}
+        <h5 *ngIf="justInitiales; else completeName">
+          {{ eleve.nom | uppercase | slice:0:1 }} {{ eleve.prenom | lowercase }}
         </h5>
+        <ng-template #completeName>
+          {{ eleve.nom | uppercase }} {{ eleve.prenom | lowercase }}
+        </ng-template>
       </div>
     </a>
   </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="tronquerModal" tabindex="-1" role="dialog" aria-labelledby="tronquerModalLabel" aria-hidden="true">
+<!-- Utile quand l'opération était définitive -->
+<!-- <div class="modal fade" id="tronquerModal" tabindex="-1" role="dialog" aria-labelledby="tronquerModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -49,8 +53,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-          <button type="button" class="btn btn-primary" (click)="justInititales()" data-dismiss="modal">Continuer</button>
+          <button type="button" class="btn btn-primary" (click)="filterJustInitiales()" data-dismiss="modal">Continuer</button>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->

@@ -81,9 +81,6 @@ export class EleveNewComponent implements OnInit {
       this.eleveForm.value.email
     );
     this.elevesService.add(eleve)
-        .subscribe(eleve => {
-          console.log(eleve);
-      });
-    this.router.navigate(['/eleves']);
+        .subscribe(() => this.router.navigate(['/eleves']));
   }
 }

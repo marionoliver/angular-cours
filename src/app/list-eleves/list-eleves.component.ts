@@ -2,7 +2,8 @@
 import { ElevesService } from './../eleves.service';
 import { Component, OnInit } from '@angular/core';
 import { Eleve } from '../store';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, flatMap } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-list-eleves',
@@ -10,7 +11,8 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./list-eleves.component.css']
 })
 export class ListElevesComponent implements OnInit {
-  eleves: any = null;
+  eleves: Eleve[] = null;
+  justInitiales: Boolean = false;
 
   constructor(private elevesService: ElevesService) { }
 
@@ -24,23 +26,30 @@ export class ListElevesComponent implements OnInit {
   }
 
   filterMoreThanThirty() {
-    // const newEleves = new Array();
-    // this.elevesService.list().pipe(filter(eleve => eleve.age > 30)).subscribe(eleves => newEleves.push(eleves));
-    // this.eleves = newEleves;
+    this.elevesService.list().pipe(
+      map(eleves => eleves.filter(eleve => eleve.age > 30))
+      ).subscribe(eleves => {
+        this.eleves = eleves;
+        this.justInitiales = false;
+      }
+    );
   }
 
-  justInititales() {
-    // const newEleves = new Array();
-    // this.elevesService.list().pipe(map(eleve => eleve.getInitiale())).subscribe(eleves => newEleves.push(eleves));
-    // this.eleves = newEleves;
-  }
+   filterJustInitiales() {
+     this.justInitiales = true;
+  // pas optimisé dans ce cas donc utilisation d'une autre méthode
+  //   this.elevesService.list().pipe(
+  //       map(eleve => eleve.getInitiale())
+  //     ).subscribe(eleves => eleves);
+   }
 
   resetFilter() {
-    const newEleves = new Array();
     this.elevesService.list().subscribe(
-      eleve => newEleves.push(eleve)
+      eleves => {
+        this.eleves = eleves;
+        this.justInitiales = false;
+      }
     );
-    this.eleves = newEleves;
   }
 
 }

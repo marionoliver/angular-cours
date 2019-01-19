@@ -90,10 +90,8 @@ export class EditEleveComponent implements OnInit {
     console.log(eleve);
     this.elevesService.update(eleve)
       // tslint:disable-next-line:no-shadowed-variable
-      .subscribe(eleve => {
-        console.log(eleve);
-    });
-    this.router.navigate(['/eleves']);
+      .subscribe(() => this.router.navigate(['/eleves']))
+    ;
   }
 }
 

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Eleve } from './store';
 import { Observable, from, of, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, filter } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,12 +16,12 @@ const httpOptions = {
 export class ElevesService {
   private elevesUrl = '/api/eleves';
 
-  public eleves = new BehaviorSubject([]);
+  public eleves = new BehaviorSubject<Eleve[]>([]);
 
   constructor(private http: HttpClient, private notificationService: NotificationService, private memoryService: InMemoryDataService) {}
 
-  list() {
-    return this.http.get(this.elevesUrl)
+  list(): Observable<Eleve[]> {
+    return this.http.get<Eleve[]>(this.elevesUrl)
       .pipe(
         tap(_ => this.log('fetched eleves')),
         catchError(this.handleError('getEleves', []))
@@ -61,6 +61,7 @@ export class ElevesService {
       catchError(this.handleError<Eleve>('deleteEleve'))
     );
   }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
