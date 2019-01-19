@@ -38,6 +38,11 @@
                 </div>
               </div>
             </li>
+            <li class="text-center">
+              <button class="btn btn-primary" (click)="notificationService.clear()" [disabled]="notificationService.list().length === 0">
+                Clear all notification
+              </button>
+            </li>
           </ul>
         </div>
       </div>

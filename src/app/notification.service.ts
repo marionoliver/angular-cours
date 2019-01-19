@@ -25,6 +25,6 @@ export class NotificationService {
   }
 
   public remove(id: number) {
-    this.notifications.splice(id);
+    this.notifications.splice(id, 1);
   }
 }
