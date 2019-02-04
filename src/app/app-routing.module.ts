@@ -1,3 +1,4 @@
+import { Page404Component } from './page404/page404.component';
 import { EditEleveComponent } from './edit-eleve/edit-eleve.component';
 import { EleveNewComponent } from './eleve-new/eleve-new.component';
 import { ListElevesComponent } from './list-eleves/list-eleves.component';
@@ -11,7 +12,9 @@ const routes: Routes = [
   { path: 'eleves', component: ListElevesComponent, data: {title: 'Liste élèves'} },
   { path: 'eleve/new', component: EleveNewComponent, data: {title: 'Ajouter élève'} },
   { path: 'eleve/:eleveId', component: EleveComponent, data: {title: 'Détail élève'} },
-  { path: 'eleve/edit/:eleveId', component: EditEleveComponent, data: {title: 'Modifier élève'} }];
+  { path: 'eleve/edit/:eleveId', component: EditEleveComponent, data: {title: 'Modifier élève'} },
+  { path: 'page404', component: Page404Component, data: {title: 'Erreur'} }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

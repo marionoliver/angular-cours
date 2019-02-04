@@ -14,8 +14,10 @@ import { EleveNewComponent } from './eleve-new/eleve-new.component';
 import { NotificationComponent } from './notification/notification.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { EditEleveComponent } from './edit-eleve/edit-eleve.component';
+import { httpInterceptorProviders } from './http-interceptors';
+import { Page404Component } from './page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -28,19 +30,23 @@ import { EditEleveComponent } from './edit-eleve/edit-eleve.component';
     EleveComponent,
     EleveNewComponent,
     NotificationComponent,
-    EditEleveComponent
+    EditEleveComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    )
+    HttpClientModule
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, {dataEncapsulation: false}
+    // )
   ],
-  providers: [MineurPipe],
+  providers: [
+    // MineurPipe,
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
