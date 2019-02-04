@@ -1,3 +1,4 @@
+import { HandleSalleComponent } from './handle-salle/handle-salle.component';
 import { Page404Component } from './page404/page404.component';
 import { EditEleveComponent } from './edit-eleve/edit-eleve.component';
 import { EleveNewComponent } from './eleve-new/eleve-new.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'eleve/new', component: EleveNewComponent, data: {title: 'Ajouter élève'} },
   { path: 'eleve/:eleveId', component: EleveComponent, data: {title: 'Détail élève'} },
   { path: 'eleve/edit/:eleveId', component: EditEleveComponent, data: {title: 'Modifier élève'} },
-  { path: 'page404', component: Page404Component, data: {title: 'Erreur'} }
+  { path: 'page404', component: Page404Component, data: {title: 'Erreur'} },
+  { path: 'salles', component: HandleSalleComponent, data: {title: 'Liste salles'} }
 ];
 
 @NgModule({

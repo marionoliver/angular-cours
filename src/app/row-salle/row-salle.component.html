@@ -1,0 +1,15 @@
+<div
+  (click)="selectSalle()"
+  class="card text-center"
+  >
+    <div class="card-header">Salle {{ salle.id }}</div>
+    <div class="card-body">
+      <h5>
+        {{ salle.nom }}
+      </h5>
+      {{ salle.niveau }} <br/>
+      <div *ngFor="let specialisation of salle.specialisations">
+         {{ specialisation }}
+      </div>
+    </div>
+</div>

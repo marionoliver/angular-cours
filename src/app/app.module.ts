@@ -18,6 +18,9 @@ import { HttpClientModule} from '@angular/common/http';
 import { EditEleveComponent } from './edit-eleve/edit-eleve.component';
 import { httpInterceptorProviders } from './http-interceptors';
 import { Page404Component } from './page404/page404.component';
+import { HandleSalleComponent } from './handle-salle/handle-salle.component';
+import { LoopSalleComponent } from './loop-salle/loop-salle.component';
+import { RowSalleComponent } from './row-salle/row-salle.component';
 
 @NgModule({
   declarations: [
@@ -31,17 +34,20 @@ import { Page404Component } from './page404/page404.component';
     EleveNewComponent,
     NotificationComponent,
     EditEleveComponent,
-    Page404Component
+    Page404Component,
+    HandleSalleComponent,
+    LoopSalleComponent,
+    RowSalleComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, {dataEncapsulation: false}
-    // )
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false}
+    )
   ],
   providers: [
     // MineurPipe,
